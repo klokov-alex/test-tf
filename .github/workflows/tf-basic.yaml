@@ -3,7 +3,7 @@ on: [push]
 
 jobs:
   test:
-    # environment: test
+    environment: test
     runs-on: ubuntu-latest
     steps:
     - name: Azure Login action
