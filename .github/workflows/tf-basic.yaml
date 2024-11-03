@@ -1,29 +1,46 @@
 name: Run Azure Login with the Service Principal secret
 on: [push]
 
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read  # This is required for actions/checkout
+
+
 jobs:
   test:
     environment: test
     runs-on: ubuntu-latest
     steps:
-    - name: Azure Login action
-      uses: azure/login@v2
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-        enable-AzPSSession: true
-    
-    - name: Azure CLI script
-      uses: azure/cli@v2
-      with:
-        azcliversion: latest
-        inlineScript: |
-          az group show --name "<YOUR RESOURCE GROUP>"
-          # You can write your Azure CLI inline scripts here.
+      - name: 'Az CLI login'
+        uses: azure/login@a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-    - name: Azure PowerShell action
-      uses: azure/powershell@v2
-      with:
-        azPSVersion: latest
-        inlineScript: |
-          Get-AzResourceGroup -Name "<YOUR RESOURCE GROUP>"
-          # You can write your Azure PowerShell inline scripts here.
+      - name: 'Run az commands'
+        run: |
+          az account show
+          az group list
+    # steps:
+    # - name: Azure Login action
+    #   uses: azure/login@v2
+    #   with:
+    #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+    #     enable-AzPSSession: true
+    
+    # - name: Azure CLI script
+    #   uses: azure/cli@v2
+    #   with:
+    #     azcliversion: latest
+    #     inlineScript: |
+    #       az group show --name "<YOUR RESOURCE GROUP>"
+    #       # You can write your Azure CLI inline scripts here.
+
+    # - name: Azure PowerShell action
+    #   uses: azure/powershell@v2
+    #   with:
+    #     azPSVersion: latest
+    #     inlineScript: |
+    #       Get-AzResourceGroup -Name "<YOUR RESOURCE GROUP>"
+    #       # You can write your Azure PowerShell inline scripts here.
