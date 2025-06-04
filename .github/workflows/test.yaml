@@ -1,0 +1,35 @@
+name: My Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      artifact_url:
+        description: URL to Automation artifact (Azure blob url)
+        type: string
+        required: true
+        default: 'https://ghartifactscac001.blob.core.windows.net/builds/downstream_pirs-automation.zip'
+      test_type:
+        description: Test type
+        type: choice
+        options:
+        - All
+        - Daily
+        - Weekly
+        default: 'All'
+
+  workflow_call:
+    inputs:
+      test_type:
+        required: true
+        type: string
+            
+jobs:
+  run-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 900 #15 hours
+    steps:
+
+    - name: Create Tools and Report Folders
+      run: |
+        echo "Hello there!"
+        echo "Test type is ${{ inputs.test_type }}"
