@@ -9,3 +9,4 @@ jobs:
     uses: ./.github/workflows/test.yaml
     with:
       test_type: Daily
+      artifact_url: 'https://ghartifactscac001.blob.core.windows.net/builds/downstream_pirs-automation.zip'
