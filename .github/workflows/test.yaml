@@ -22,6 +22,9 @@ on:
       test_type:
         required: true
         type: string
+      artifact_url:
+        required: true
+        type: string
             
 jobs:
   run-test:
