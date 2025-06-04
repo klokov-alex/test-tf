@@ -1,0 +1,11 @@
+name: Cron trigger
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+
+jobs:
+  trigger:
+    uses: ./.github/workflows/test.yml
+    with:
+      test_type: Daily
