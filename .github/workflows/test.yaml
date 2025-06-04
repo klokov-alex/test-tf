@@ -33,3 +33,4 @@ jobs:
       run: |
         echo "Hello there!"
         echo "Test type is ${{ inputs.test_type }}"
+        echo "Test artifact is ${{ inputs.artifact_url }}"
