@@ -6,6 +6,6 @@ on:
 
 jobs:
   trigger:
-    uses: ./.github/workflows/test.yml
+    uses: ./.github/workflows/test.yaml
     with:
       test_type: Daily
