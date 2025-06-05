@@ -1,8 +1,8 @@
 name: Cron trigger
 
-on:
-  schedule:
-    - cron: '*/10 * * * *'
+# on:
+#   schedule:
+#     - cron: '*/10 * * * *'
 
 jobs:
   trigger:
